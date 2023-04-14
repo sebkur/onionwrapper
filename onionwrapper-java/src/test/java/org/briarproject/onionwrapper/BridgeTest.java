@@ -62,7 +62,9 @@ public class BridgeTest extends BaseTest {
 			for (String bridge : provider.getBridges(DEFAULT_OBFS4, "", true)) {
 				states.add(new Params(bridge, DEFAULT_OBFS4, stats, false));
 			}
-			for (String bridge : provider.getBridges(NON_DEFAULT_OBFS4, "", true)) {
+			for (String bridge : provider.getBridges(
+					NON_DEFAULT_OBFS4, "", true)
+			) {
 				states.add(new Params(bridge, NON_DEFAULT_OBFS4, stats, false));
 			}
 			for (String bridge : provider.getBridges(VANILLA, "", true)) {
@@ -72,10 +74,14 @@ public class BridgeTest extends BaseTest {
 				states.add(new Params(bridge, MEEK, stats, true));
 			}
 			for (String countryCode : SNOWFLAKE_COUNTRY_CODES) {
-				for (String bridge : provider.getBridges(SNOWFLAKE, countryCode, true)) {
+				for (String bridge : provider.getBridges(
+						SNOWFLAKE, countryCode, true
+				)) {
 					states.add(new Params(bridge, SNOWFLAKE, stats, true));
 				}
-				for (String bridge : provider.getBridges(SNOWFLAKE, countryCode, false)) {
+				for (String bridge : provider.getBridges(
+						SNOWFLAKE, countryCode, false
+				)) {
 					states.add(new Params(bridge, SNOWFLAKE, stats, true));
 				}
 			}
@@ -112,8 +118,8 @@ public class BridgeTest extends BaseTest {
 		}
 
 		String architecture = requireNonNull(getArchitectureForTorBinary());
-		TorWrapper tor = new UnixTorWrapper(executor, executor, architecture, torDir,
-				CONTROL_PORT, SOCKS_PORT);
+		TorWrapper tor = new UnixTorWrapper(executor, executor, architecture,
+				torDir, CONTROL_PORT, SOCKS_PORT);
 
 		LOG.warning("Testing " + params.bridge);
 		try {
@@ -131,7 +137,8 @@ public class BridgeTest extends BaseTest {
 				LOG.info("Connected to Tor: " + params.bridge);
 				params.stats.countSuccess(params.bridge);
 			} else {
-				LOG.warning("Could not connect to Tor within timeout: " + params.bridge);
+				LOG.warning("Could not connect to Tor within timeout: " +
+						params.bridge);
 				params.stats.countFailure(params.bridge, params.essential);
 			}
 		} finally {
@@ -146,7 +153,8 @@ public class BridgeTest extends BaseTest {
 		private final Stats stats;
 		private final boolean essential;
 
-		private Params(String bridge, BridgeType bridgeType, Stats stats, boolean essential) {
+		private Params(String bridge, BridgeType bridgeType, Stats stats,
+				boolean essential) {
 			this.bridge = bridge;
 			this.bridgeType = bridgeType;
 			this.stats = stats;
@@ -171,13 +179,15 @@ public class BridgeTest extends BaseTest {
 			successes.add(bridge);
 		}
 
-		private synchronized void countFailure(String bridge, boolean essential) {
+		private synchronized void countFailure(String bridge,
+				boolean essential) {
 			if (failures.add(bridge) == ATTEMPTS_PER_BRIDGE) {
 				LOG.warning("Bridge is unreachable after "
 						+ ATTEMPTS_PER_BRIDGE + " attempts: " + bridge);
 				unreachable.add(bridge);
 				if (unreachable.size() > UNREACHABLE_BRIDGES_ALLOWED) {
-					fail(unreachable.size() + " bridges are unreachable: " + unreachable);
+					fail(unreachable.size() + " bridges are unreachable: " +
+							unreachable);
 				}
 				if (essential) {
 					fail("essential bridge is unreachable");

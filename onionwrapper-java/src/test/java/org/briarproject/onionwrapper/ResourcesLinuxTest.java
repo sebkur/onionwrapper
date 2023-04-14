@@ -7,7 +7,7 @@ import static org.briarproject.onionwrapper.TestUtils.isLinux;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assume.assumeTrue;
 
-public class ResourcesTest {
+public class ResourcesLinuxTest {
 
 	@Before
 	public void setUp() {
@@ -30,7 +30,8 @@ public class ResourcesTest {
 	}
 
 	private void testCanLoadResource(String name) {
-		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		ClassLoader classLoader =
+				Thread.currentThread().getContextClassLoader();
 		assertNotNull(classLoader.getResourceAsStream(name));
 	}
 }
