@@ -53,16 +53,16 @@ public class AndroidTorWrapper extends AbstractTorWrapper {
 	 * @param app The application instance.
 	 * @param wakeLockManager The interface for managing a shared wake lock.
 	 * @param ioExecutor The wrapper will use this executor to run IO tasks,
-	 * 		some of which may run for the lifetime of the wrapper, so the executor
-	 * 		should have an unlimited thread pool.
+	 * some of which may run for the lifetime of the wrapper, so the executor
+	 * should have an unlimited thread pool.
 	 * @param eventExecutor The wrapper will use this executor to call the
-	 *        {@link Observer observer} (if any). To ensure that events are observed
-	 * 		in the order they occur, this executor should have a single thread (eg
-	 * 		the app's main thread).
+	 * {@link Observer observer} (if any). To ensure that events are observed
+	 * in the order they occur, this executor should have a single thread (eg
+	 * the app's main thread).
 	 * @param architecture The processor architecture of the Tor and pluggable
-	 * 		transport binaries.
+	 * transport binaries.
 	 * @param torDirectory The directory where the Tor process should keep its
-	 * 		state.
+	 * state.
 	 * @param torSocksPort The port number to use for Tor's SOCKS port.
 	 * @param torControlPort The port number to use for Tor's control port.
 	 */
@@ -190,7 +190,7 @@ public class AndroidTorWrapper extends AbstractTorWrapper {
 			@SuppressWarnings("IOStreamConstructor")
 			ZipInputStream zin = new ZipInputStream(new FileInputStream(apk));
 			for (ZipEntry e = zin.getNextEntry(); e != null;
-			     e = zin.getNextEntry()) {
+					e = zin.getNextEntry()) {
 				if (libPaths.contains(e.getName())) {
 					if (LOG.isLoggable(INFO)) {
 						LOG.info("Extracting " + e.getName()

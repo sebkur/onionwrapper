@@ -34,7 +34,9 @@ class BaseTest {
 	public void afterTestCase() {
 		Throwable thrown = exceptionInBackgroundThread;
 		if (thrown != null) {
-			LOG.log(WARNING, "Background thread has thrown an exception unexpectedly", thrown);
+			LOG.log(WARNING,
+					"Background thread has thrown an exception unexpectedly",
+					thrown);
 			throw new AssertionError(thrown);
 		}
 	}

@@ -54,8 +54,8 @@ public interface TorWrapper {
 	 * @param localPort The local port on which the service is listening.
 	 * @param remotePort The port number that clients of the service will see.
 	 * @param privateKey The private key of the hidden service, in the form
-	 * 		returned by a previous call to this method, or null if a new service
-	 * 		should be created.
+	 * returned by a previous call to this method, or null if a new service
+	 * should be created.
 	 */
 	HiddenServiceProperties publishHiddenService(int localPort,
 			int remotePort, @Nullable String privateKey) throws IOException;
