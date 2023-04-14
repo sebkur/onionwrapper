@@ -12,6 +12,7 @@ import javax.annotation.concurrent.ThreadSafe;
 import static java.util.Arrays.asList;
 import static java.util.logging.Level.WARNING;
 import static java.util.logging.Logger.getLogger;
+import static org.briarproject.onionwrapper.StringUtils.startsWithIgnoreCase;
 
 @ThreadSafe
 @NotNullByDefault
@@ -38,7 +39,8 @@ public class TestUtils {
 			File[] children = f.listFiles();
 			if (children == null) {
 				if (LOG.isLoggable(WARNING)) {
-					LOG.warning("Could not list files in " + f.getAbsolutePath());
+					LOG.warning(
+							"Could not list files in " + f.getAbsolutePath());
 				}
 			} else {
 				for (File child : children) deleteFileOrDir(child);
@@ -56,6 +58,16 @@ public class TestUtils {
 	public static boolean isLinux() {
 		String os = System.getProperty("os.name");
 		return os != null && os.contains("Linux");
+	}
+
+	public static boolean isWindows() {
+		String os = System.getProperty("os.name");
+		return os != null && startsWithIgnoreCase(os, "Win");
+	}
+
+	public static boolean isMac() {
+		String os = System.getProperty("os.name");
+		return os != null && os.equalsIgnoreCase("Mac OS X");
 	}
 
 	@Nullable
