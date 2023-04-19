@@ -14,3 +14,5 @@ On Android, the library uses
 whenever Tor's network connection is enabled. The helper classes in `dont-kill-me-lib` can be used
 to work around certain manufacturer-specific power management restrictions that would prevent Tor
 from running in the background for long periods.
+
+    ./gradlew onionwrapper-core:publish onionwrapper-java:publish

@@ -1,6 +1,6 @@
 plugins {
     id 'java-library'
-    id 'com.vanniktech.maven.publish' version '0.18.0'
+	id 'com.vanniktech.maven.publish' version '0.25.2'
     id 'checkstyle'
 }
 
@@ -20,6 +20,14 @@ dependencies {
     api 'org.briarproject:jtorctl:0.5'
 
     testImplementation "junit:junit:4.13.2"
+}
+
+publishing {
+    repositories {
+        maven {
+            url = layout.projectDir.dir('../repo')
+        }
+    }
 }
 
 // Make test classes available to other modules

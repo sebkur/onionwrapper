@@ -3,7 +3,7 @@ import static org.briarproject.onionwrapper.OsUtils.currentOS
 
 plugins {
     id 'java-library'
-    id 'com.vanniktech.maven.publish' version '0.18.0'
+	id 'com.vanniktech.maven.publish' version '0.25.2'
     id 'checkstyle'
 }
 
@@ -32,6 +32,14 @@ dependencies {
         testImplementation "org.briarproject:tor-macos-pipelines:0.4.7.13-2"
         testImplementation "org.briarproject:obfs4proxy-macos-pipelines:0.0.14-tor2"
         testImplementation "org.briarproject:snowflake-macos-pipelines:2.5.1"
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            url = layout.projectDir.dir('../repo')
+        }
     }
 }
 
